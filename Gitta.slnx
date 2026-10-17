@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Gitta.vcxproj" Id="f54a9001-22fc-4a34-8bd1-f3d80f785450" />
+</Solution>
