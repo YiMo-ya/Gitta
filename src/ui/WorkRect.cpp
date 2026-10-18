@@ -2,6 +2,7 @@
 #include "SideBar.h"
 #include "BottomBar.h"
 #include "Shared.h"
+#include "Search.h"
 #include "user/User.h"
 
 namespace WorkRect
@@ -20,7 +21,7 @@ namespace WorkRect
 
 	void Draw(RenWin& window)
 	{
-		static int StartY = ScreenSize.y * 0.01;
+		static int StartY = ScreenSize.y * 0.01 + Search::SearchBoxH + UISPACE;
 		int x = SideBar::Level1::w;
 
 		//自动切换逻辑
@@ -49,7 +50,7 @@ namespace WorkRect
 
 				static int lw = ScreenSize.x / 1920;
 				XGraph::LineShape::SetLineWidth(lw);
-				static Color LineColor = UserData::BackColor == Color(30, 30, 30) ? Color(100, 100, 100) : Color(100, 100, 255);
+				static Color LineColor = UserData::BackColor == Color(30, 30, 30) ? Color(100, 100, 255) : Color(200, 200, 255);
 				XGraph::SetColor(Color(120, 120, 120));
 
 				XGraph::RectangleShape::FillRoundRect(lw, lw, w - lw * 2, h - lw * 2, ROUNDSIZE, rt);

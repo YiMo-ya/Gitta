@@ -5,6 +5,7 @@
 #include "ui/SideBar.h"
 #include "ui/BottomBar.h"
 #include "ui/WorkRect.h"
+#include "ui/Search.h"
 
 namespace MainWindow
 {
@@ -34,6 +35,12 @@ namespace MainWindow
 		static IMAGE BackImage;
 		if (!EnableDWM) InitBackImage(BackImage);
 
+		//图标
+		static IMAGE AppIcon;
+		XImage::NewImage(AppIcon, L"Icon.dll");
+		float Scale = ScreenSize.x * 0.013 / 512.0;
+		XImageEx::ImageChange::Scale(AppIcon, Scale, Scale);
+
 		while (XMsg::IsOpen(window))
 		{
 			XWindow::DelayFps(window);
@@ -45,8 +52,8 @@ namespace MainWindow
 			{
 				//绘制背景
 				Vector2i WindowPos = XWindow::GetWindowPos(window);
-				WindowPos.x = max(0, WindowPos.x, 0);
-				WindowPos.y = max(0, WindowPos.y, 0);
+				WindowPos.x = max(0, WindowPos.x);
+				WindowPos.y = max(0, WindowPos.y);
 
 				static EV2 BackImageDrawPos;
 				static Vector2i WindowPosTemp;
@@ -76,6 +83,9 @@ namespace MainWindow
 				XGraph::RectangleShape::FillRect_WithoutBorder(0, 0, WindowSize.x, WindowSize.y, window);
 			}
 
+			//绘制搜索栏
+			Search::Draw(window);
+
 			//绘制底部消息栏
 			BottomBar::Draw(window);
 
@@ -87,6 +97,10 @@ namespace MainWindow
 
 			//绘制右侧侧边栏（1级）提示
 			SideBar::Level1::DrawTips(window);
+
+			//绘制左上角图标
+			static Vector2i AppIconPos = { SideBar::Level1::w / 2,ScreenSize.y / 100 + Search::SearchBoxH / 2 };
+			XImage::PutImage(AppIcon, AppIconPos.x, AppIconPos.y, window,0.5,0.5);
 		}
 	}
 }
