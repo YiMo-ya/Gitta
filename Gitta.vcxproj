@@ -148,12 +148,10 @@
     <ClCompile Include="src\main\Lang.cpp" />
     <ClCompile Include="src\main\Main.cpp" />
     <ClCompile Include="src\main\MainWindow.cpp" />
-    <ClCompile Include="src\project\Project.cpp" />
     <ClCompile Include="src\Shared.cpp" />
     <ClCompile Include="src\ui\BottomBar.cpp" />
     <ClCompile Include="src\ui\ConfigBar.cpp" />
     <ClCompile Include="src\ui\SideBar.cpp" />
-    <ClCompile Include="src\ui\TimeLine.cpp" />
     <ClCompile Include="src\ui\UI.cpp" />
     <ClCompile Include="src\ui\WorkRect.cpp" />
     <ClCompile Include="src\user\User.cpp" />
@@ -165,12 +163,10 @@
     <ClInclude Include="src\main\ErrorCode.h" />
     <ClInclude Include="src\main\Lang.h" />
     <ClInclude Include="src\main\MainWindow.h" />
-    <ClInclude Include="src\project\Project.h" />
     <ClInclude Include="src\Shared.h" />
     <ClInclude Include="src\ui\BottomBar.h" />
     <ClInclude Include="src\ui\ConfigBar.h" />
     <ClInclude Include="src\ui\SideBar.h" />
-    <ClInclude Include="src\ui\TimeLine.h" />
     <ClInclude Include="src\ui\UI.h" />
     <ClInclude Include="src\ui\WorkRect.h" />
     <ClInclude Include="src\user\User.h" />

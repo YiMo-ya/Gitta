@@ -1,7 +1,6 @@
 #include "Shared.h"
 #include "ConfigBar.h"
 #include "SideBar.h"
-#include "TimeLine.h"
 #include "BottomBar.h"
 
 namespace ConfigBar
@@ -27,7 +26,6 @@ namespace ConfigBar
 		static int StartY = ScreenSize.y * 0.01;
 		//高度
 		int h = WindowSize.y - StartY - BottomBar::h - UISPACE;
-		if (TimeLine::TimeLineH.value > 0) h -= (UISPACE + TimeLine::TimeLineH.value);
 
 		//纹理尺寸大于0时绘制
 		if (ConfigBarW.value > 0)

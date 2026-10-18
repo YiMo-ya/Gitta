@@ -12,11 +12,4 @@ namespace SideBar
 
 		void DrawTips(RenWin& window);
 	}
-
-	namespace Level2
-	{
-		extern bool NeedRedraw;
-		extern xs::EV SideBarLevel2W;
-		void Draw(RenWin& window);
-	}
 }

@@ -14,8 +14,6 @@ namespace UserData
 	//语言
 	Language Lang = ZH;
 
-	bool CanEnableDWM = true;
-
 	void Read()
 	{
 		//拼接用户数据文件位置
@@ -64,8 +62,8 @@ namespace UserData
 				{
 					UserData >> Data;
 
-					if (Data == "Enable") CanEnableDWM = true;
-					else CanEnableDWM = false;
+					if (Data == "Enable") EnableDWM = true;
+					else EnableDWM = false;
 				}
 			}
 

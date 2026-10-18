@@ -6,7 +6,6 @@
 #include "main/Debug.h"
 
 #include "BottomBar.h"
-#include "TimeLine.h"
 
 namespace SideBar
 {
@@ -142,12 +141,6 @@ namespace SideBar
 				SideBarLinePosY.SetAnimationStartValue(Space * Index + Space / 2);
 				SideBarLineSize.SetAnimation(SIDEBAR_LINE_SIZE, 10);
 			}
-
-			//展开二级列表
-			if (Level2::SideBarLevel2W.value <= 0) Level2::SideBarLevel2W.SetAnimation(w * 4, 10);
-
-			//更新二级列表
-			Level2::NeedRedraw = true;
 		}
 
 		//绘制侧边栏
@@ -204,6 +197,8 @@ namespace SideBar
 				SIDEBAR_LINE_SIZE = ScreenSize.x / 100;
 
 				w = ScreenSize.x / 30;
+
+				Set(0);
 
 				Init = true;
 			}
@@ -401,123 +396,6 @@ namespace SideBar
 						NameRect.y.value + NameRect.h.value / 2,
 						SideBarLevel1Icons[SideBarInIndex].name, window);
 				}
-			}
-		}
-	}
-
-	namespace Level2
-	{
-		RenderTexture rt;
-		bool NeedRedraw = false;
-
-		EV SideBarLevel2W;
-
-		int ChooseIndex = -1;
-
-		void Draw(RenWin& window)
-		{
-			//更新动画
-			SideBarLevel2W.UpdateAnimation(XEase::EaseBasic::easeOut, 4);
-
-			//开始Y坐标
-			static int StartY = ScreenSize.y * 0.01;
-			//高度
-			int h = WindowSize.y - StartY - BottomBar::h - UISPACE;
-			if (TimeLine::TimeLineH.value > 0) h -= (UISPACE +TimeLine::TimeLineH.value);
-
-			//纹理尺寸大于0时绘制
-			if(SideBarLevel2W.value > 0)
-			{
-				if (SideBarLevel2W.IsAnimation() || NeedRedraw || XMsg::WindowMsg::IsWindowResize())
-				{
-					if (rt.resize({ unsigned int(SideBarLevel2W.value),unsigned int(h) }))
-					{
-						rt.clear(Color::Transparent);
-
-						//绘制底色
-						static int lw = ScreenSize.x / 500;
-						XGraph::LineShape::SetLineWidth(lw);
-						XGraph::SetColor(Color(120, 120, 120));
-						XGraph::RectangleShape::RoundRect(0, 0, SideBarLevel2W.value, h, ROUNDSIZE, rt);
-
-						//绘制名字
-						XText::SetFontConfig(FONTCOLOR, FONTSIZE);
-						XText::SetFontAdjust(ADJUST_LEFT, ADJUST_TOP);
-
-						static int FontSpace = ScreenSize.x / 200;
-						XText::Xyprintf(FontSpace, FontSpace, SideBarLevel1Icons[Level1::SideBarIndex].name, rt);
-
-						rt.display();
-					}
-				}
-
-				
-			}
-
-			//调整大小
-			static bool IsResize = false;
-			static int ResizeTipLineAlpha = 0;
-			if (XMsg::MouseMsg::IsMousePress(VK::MouseLeft) && SideBarLevel2W.value > 0)
-			{
-				if (XMsg::MouseMsg::IsMouseIn(Level1::w + Level2::SideBarLevel2W.value, StartY, UISPACE, h))
-				{
-					IsResize = true;
-				}
-
-				if (IsResize)
-				{
-					int x = XMsg::MouseMsg::GetMousePosWindow().x;
-
-					int NewW = min(x - Level1::w, WindowSize.x / 3);
-					SideBarLevel2W.SetAnimationStartValue(NewW);
-
-					ResizeTipLineAlpha = 255;
-
-					//小于一个阈值，直接收回
-					if (SideBarLevel2W.value < UISPACE)
-					{
-						SideBarLevel2W.SetAnimationStartValue(0);
-						IsResize = false;
-
-						Level1::SideBarLineSize.SetAnimation(0, 10);
-						SideBarLevel1Icons[Level1::SideBarIndex].IconXOffset.SetAnimation(0, 10);
-						Level1::SideBarIndex = -1;
-						Level1::NeedRedraw = true;
-					}
-
-					NeedRedraw = true;
-				}
-			}
-			else
-			{
-				if (IsResize) IsResize = false;
-
-				if (ResizeTipLineAlpha - 30 > 0) ResizeTipLineAlpha -= 30;
-				else ResizeTipLineAlpha = 0;
-			}
-			
-			//纹理尺寸大于0时绘制
-			if (SideBarLevel2W.value > 0)
-			{
-				Sprite s(rt.getTexture());
-				s.setPosition({ (float)Level1::w,(float)StartY });
-				window.draw(s);
-			}
-
-			//调整大小提示线
-			if (ResizeTipLineAlpha > 0)
-			{
-				static int lw = ScreenSize.x / 300;
-				XGraph::LineShape::SetLineWidth(lw);
-				XGraph::LineShape::SetLineCap(LINECAP_FLAT);
-				Color LineColor = UserData::MainColor;
-				LineColor.a = ResizeTipLineAlpha;
-				XGraph::SetColor(LineColor);
-				XGraph::LineShape::Line(
-					Level1::w + Level2::SideBarLevel2W.value + UISPACE / 2, StartY,
-					Level1::w + Level2::SideBarLevel2W.value + UISPACE / 2, StartY + h,
-					window);
-				XGraph::LineShape::SetLineCap();
 			}
 		}
 	}

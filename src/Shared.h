@@ -18,5 +18,4 @@ extern int UISPACE;
 
 namespace Shared
 {
-	void DrawBorder(RenWin& window);
 }

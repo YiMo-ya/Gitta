@@ -44,8 +44,11 @@ void InitApp()
 	//自适应字体大小
 	if (UserData::Lang == EN) FONTSIZE *= 0.9;
 
-	//检查DWM是否可用
-	EnableDWM = CanCallDwmSetWindowAttribute();
+	if(EnableDWM)
+	{
+		//检查DWM是否可用
+		EnableDWM = CanCallDwmSetWindowAttribute();
+	}
 
 	//初始化文字颜色
 	FONTCOLOR = UserData::BackColor == Color(30, 30, 30) ? Color::White : Color::Black;
@@ -78,20 +81,10 @@ int main()
 
 	if (EnableDWM)
 	{
-		if(UserData::CanEnableDWM)
-		{
-			XWindow::DWM::SetWindowBackType(window, BACKTYPE_BLUR);
-			XWindow::DWM::ExtendIntoClientArea(window, -1, -1, -1, -1);
-			XWindow::DWM::SetWindowDarkMode(window, UserData::BackColor == Color(30, 30, 30) ? true : false);
-			XWindow::DWM::SetWindowTitleBarColor(window, UserData::BackColor == Color(30, 30, 30) ? Color(50, 50, 50) : Color(240,240,240));
-		}
-		else
-		{
-			XWindow::SetBackGroundColor(UserData::BackColor);
-			XWindow::DWM::SetWindowTitleBarColor(window, UserData::BackColor);
-		}
+		XWindow::DWM::SetWindowBackType(window, BACKTYPE_BLUR);
+		XWindow::DWM::ExtendIntoClientArea(window, -1, -1, -1, -1);
+		XWindow::DWM::SetWindowDarkMode(window, UserData::BackColor == Color(30, 30, 30) ? true : false);
 		XWindow::DWM::SetWindowBorderColor(window, UserData::MainColor);
-		
 	}
 	else
 	{

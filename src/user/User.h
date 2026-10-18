@@ -17,7 +17,4 @@ namespace UserData
 
 	//导出语言
 	extern Language Lang;
-
-	//导出启用DWM
-	extern bool CanEnableDWM;
 }

@@ -30,9 +30,6 @@
     <ClCompile Include="src\main\MainWindow.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\project\Project.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\ui\BottomBar.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -40,9 +37,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\ui\SideBar.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ui\TimeLine.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\ui\UI.cpp">
@@ -74,16 +68,10 @@
     <ClInclude Include="src\ui\SideBar.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\ui\TimeLine.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="src\ui\UI.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\ui\WorkRect.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\project\Project.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\main\Debug.h">
