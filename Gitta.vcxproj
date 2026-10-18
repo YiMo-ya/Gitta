@@ -151,6 +151,7 @@
     <ClCompile Include="src\Shared.cpp" />
     <ClCompile Include="src\ui\BottomBar.cpp" />
     <ClCompile Include="src\ui\ConfigBar.cpp" />
+    <ClCompile Include="src\ui\Search.cpp" />
     <ClCompile Include="src\ui\SideBar.cpp" />
     <ClCompile Include="src\ui\UI.cpp" />
     <ClCompile Include="src\ui\WorkRect.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="src\Shared.h" />
     <ClInclude Include="src\ui\BottomBar.h" />
     <ClInclude Include="src\ui\ConfigBar.h" />
+    <ClInclude Include="src\ui\Search.h" />
     <ClInclude Include="src\ui\SideBar.h" />
     <ClInclude Include="src\ui\UI.h" />
     <ClInclude Include="src\ui\WorkRect.h" />

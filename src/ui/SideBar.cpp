@@ -125,7 +125,7 @@ namespace SideBar
 
 		void Set(int Index)
 		{
-			SideBarLevel1Icons[SideBarIndex].IconXOffset.SetAnimation(0, 10);
+			if(SideBarIndex > -1) SideBarLevel1Icons[SideBarIndex].IconXOffset.SetAnimation(0, 10);
 			SideBarIndex = Index;
 			SideBarLevel1Icons[Index].IconXOffset.SetAnimation(w * 0.1, 10);
 			NeedRedraw = true;

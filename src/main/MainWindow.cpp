@@ -25,7 +25,7 @@ namespace MainWindow
 		XImage::NewImage(image, WallPaperPath);
 		XImageEx::ImageChange::Scale(image, ScreenSize.x, ScreenSize.y);
 		for (int i = 0; i < 100;i++) XImageEx::ImageBlur::Gaussian(image, 10);
-		image.color.a = 100;
+		image.color.a = UserData::BackColor == Color(30,30,30) ? 100 : 200;
 	}
 
 	void App(RenWin& window)
@@ -71,19 +71,19 @@ namespace MainWindow
 					XWindow::DWM::SetWindowBorderColor(window, Color(150,150,150));
 				}
 
-				static Color BackColor = UserData::BackColor == Color(30, 30, 30) ? Color(40, 40, 40, 100) : Color(255, 255, 255, 200);
+				static Color BackColor = UserData::BackColor == Color(30, 30, 30) ? Color(40, 40, 40, 100) : Color(255, 255, 255, 0);
 				XGraph::SetFillColor(BackColor);
 				XGraph::RectangleShape::FillRect_WithoutBorder(0, 0, WindowSize.x, WindowSize.y, window);
 			}
-
-			//绘制工作区背景
-			WorkRect::Draw(window);
 
 			//绘制底部消息栏
 			BottomBar::Draw(window);
 
 			//绘制右侧侧边栏
 			SideBar::Level1::Draw(window);
+
+			//绘制工作区背景
+			WorkRect::Draw(window);
 
 			//绘制右侧侧边栏（1级）提示
 			SideBar::Level1::DrawTips(window);
