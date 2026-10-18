@@ -2,7 +2,6 @@
 #include "Shared.h"
 #include "user/User.h"
 
-#include "ui/Menu.h"
 #include "ui/SideBar.h"
 #include "ui/BottomBar.h"
 #include "ui/WorkRect.h"
@@ -13,9 +12,6 @@ namespace MainWindow
 
 	void App(RenWin& window)
 	{
-
-		Menu::h = ScreenSize.y * 0.04;
-
 		while (XMsg::IsOpen(window))
 		{
 			XWindow::DelayFps(window);
@@ -42,9 +38,6 @@ namespace MainWindow
 			//绘制工作区背景
 			WorkRect::Draw(window);
 
-			//菜单消息
-			Menu::Msg(window);
-
 			//绘制底部消息栏
 			BottomBar::Draw(window);
 
@@ -56,9 +49,6 @@ namespace MainWindow
 
 			//绘制右侧侧边栏（1级）提示
 			SideBar::Level1::DrawTips(window);
-
-			//绘制菜单
-			Menu::Draw(window);
 		}
 	}
 }

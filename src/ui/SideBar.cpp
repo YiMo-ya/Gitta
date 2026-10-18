@@ -6,7 +6,6 @@
 #include "main/Debug.h"
 
 #include "BottomBar.h"
-#include "Menu.h"
 #include "TimeLine.h"
 
 namespace SideBar
@@ -220,7 +219,7 @@ namespace SideBar
 			static float Scale = w * 0.6 / 512.0;
 			static int Space = w;
 
-			static int StartY = Menu::h;
+			static int StartY = ScreenSize.y * 0.01;
 			int h = WindowSize.y - StartY - BottomBar::h;
 			if (NeedRedraw || XMsg::WindowMsg::IsWindowResize()
 				|| SideBarLineSize.IsAnimation() || SideBarLinePosY.IsAnimation())
@@ -421,7 +420,7 @@ namespace SideBar
 			SideBarLevel2W.UpdateAnimation(XEase::EaseBasic::easeOut, 4);
 
 			//开始Y坐标
-			static int StartY = Menu::h;
+			static int StartY = ScreenSize.y * 0.01;
 			//高度
 			int h = WindowSize.y - StartY - BottomBar::h - UISPACE;
 			if (TimeLine::TimeLineH.value > 0) h -= (UISPACE +TimeLine::TimeLineH.value);

@@ -1,5 +1,4 @@
 #include "WorkRect.h"
-#include "Menu.h"
 #include "SideBar.h"
 #include "BottomBar.h"
 #include "Shared.h"
@@ -22,7 +21,7 @@ namespace WorkRect
 
 		static Color BackColor = UserData::BackColor == Color(30, 30, 30) ? Color(20, 20, 20, 200) : Color(200, 200, 200, 200);
 		XGraph::SetFillColor(Color(BackColor));
-		static int y = Menu::h;
+		static int y = 0;
 
 		static int lw = ScreenSize.x / 1920;
 		XGraph::LineShape::SetLineWidth(lw);

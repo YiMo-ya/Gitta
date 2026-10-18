@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\src;$(IncludePath);$(ProjectDir);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -132,9 +132,10 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Manifest>
@@ -151,7 +152,6 @@
     <ClCompile Include="src\Shared.cpp" />
     <ClCompile Include="src\ui\BottomBar.cpp" />
     <ClCompile Include="src\ui\ConfigBar.cpp" />
-    <ClCompile Include="src\ui\Menu.cpp" />
     <ClCompile Include="src\ui\SideBar.cpp" />
     <ClCompile Include="src\ui\TimeLine.cpp" />
     <ClCompile Include="src\ui\UI.cpp" />
@@ -159,6 +159,7 @@
     <ClCompile Include="src\user\User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="src\info\Message.h" />
     <ClInclude Include="src\main\Debug.h" />
     <ClInclude Include="src\main\ErrorCode.h" />
@@ -168,12 +169,17 @@
     <ClInclude Include="src\Shared.h" />
     <ClInclude Include="src\ui\BottomBar.h" />
     <ClInclude Include="src\ui\ConfigBar.h" />
-    <ClInclude Include="src\ui\Menu.h" />
     <ClInclude Include="src\ui\SideBar.h" />
     <ClInclude Include="src\ui\TimeLine.h" />
     <ClInclude Include="src\ui\UI.h" />
     <ClInclude Include="src\ui\WorkRect.h" />
     <ClInclude Include="src\user\User.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Gitta.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Gitta.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

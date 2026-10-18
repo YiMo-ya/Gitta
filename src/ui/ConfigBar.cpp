@@ -1,7 +1,6 @@
 #include "Shared.h"
 #include "ConfigBar.h"
 #include "SideBar.h"
-#include "Menu.h"
 #include "TimeLine.h"
 #include "BottomBar.h"
 
@@ -25,7 +24,7 @@ namespace ConfigBar
 		ConfigBarW.UpdateAnimation(XEase::EaseBasic::easeOut, 4);
 
 		//开始Y坐标
-		static int StartY = Menu::h;
+		static int StartY = ScreenSize.y * 0.01;
 		//高度
 		int h = WindowSize.y - StartY - BottomBar::h - UISPACE;
 		if (TimeLine::TimeLineH.value > 0) h -= (UISPACE + TimeLine::TimeLineH.value);
