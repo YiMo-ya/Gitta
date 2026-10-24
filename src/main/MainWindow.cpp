@@ -1,6 +1,9 @@
 #include "MainWindow.h"
 #include "Shared.h"
-#include "user/User.h"
+
+#include "user/Set.h"
+#include "user/UserData.h"
+#include "user/Login.h"
 
 #include "ui/SideBar.h"
 #include "ui/BottomBar.h"
@@ -24,9 +27,9 @@ namespace MainWindow
 		);
 
 		XImage::NewImage(image, WallPaperPath);
-		XImageEx::ImageChange::Scale(image, ScreenSize.x, ScreenSize.y);
-		for (int i = 0; i < 100;i++) XImageEx::ImageBlur::Gaussian(image, 10);
-		image.color.a = UserData::BackColor == Color(30,30,30) ? 100 : 200;
+		XImageEx::ImageChange::Scale(image, ScreenSize.x / float(image.w), ScreenSize.y / float(image.h));
+		XImageEx::ImageBlur::Box(image,5);
+		image.color.a = Setting::BackColor == Color(30,30,30) ? 100 : 200;
 	}
 
 	void App(RenWin& window)
@@ -40,6 +43,8 @@ namespace MainWindow
 		XImage::NewImage(AppIcon, L"Icon.dll");
 		float Scale = ScreenSize.x * 0.013 / 512.0;
 		XImageEx::ImageChange::Scale(AppIcon, Scale, Scale);
+
+		int TaskBarHeight = XSystem::Info::GetTaskbarSize().y;
 
 		while (XMsg::IsOpen(window))
 		{
@@ -60,7 +65,7 @@ namespace MainWindow
 				if (WindowPos.x != WindowPosTemp.x || WindowPos.y != WindowPosTemp.y)
 				{
 					BackImageDrawPos.x.SetAnimation(WindowPos.x, 30);
-					BackImageDrawPos.y.SetAnimation(WindowPos.y, 30);
+					BackImageDrawPos.y.SetAnimation(WindowPos.y + TaskBarHeight, 30);
 					WindowPosTemp = WindowPos;
 				}
 				BackImageDrawPos.x.UpdateAnimation(XEase::EaseBasic::easeOut, 3);
@@ -71,14 +76,14 @@ namespace MainWindow
 			{
 				if (XWindow::IsFocus(window))
 				{
-					XWindow::DWM::SetWindowBorderColor(window, UserData::MainColor);
+					XWindow::DWM::SetWindowBorderColor(window, Setting::MainColor);
 				}
 				else
 				{
 					XWindow::DWM::SetWindowBorderColor(window, Color(150,150,150));
 				}
 
-				static Color BackColor = UserData::BackColor == Color(30, 30, 30) ? Color(40, 40, 40, 100) : Color(255, 255, 255, 0);
+				static Color BackColor = Setting::BackColor == Color(30, 30, 30) ? Color(40, 40, 40, 100) : Color(255, 255, 255, 0);
 				XGraph::SetFillColor(BackColor);
 				XGraph::RectangleShape::FillRect_WithoutBorder(0, 0, WindowSize.x, WindowSize.y, window);
 			}
@@ -101,6 +106,18 @@ namespace MainWindow
 			//绘制左上角图标
 			static Vector2i AppIconPos = { SideBar::Level1::w / 2,ScreenSize.y / 100 + Search::SearchBoxH / 2 };
 			XImage::PutImage(AppIcon, AppIconPos.x, AppIconPos.y, window,0.5,0.5);
+
+			static bool CheckUser = false;
+			if (!CheckUser)
+			{
+				//启动后只检测一次本机是否已有账户存档，避免每帧都去扫磁盘
+				CheckUser = true;
+
+				if (!UserData::IsUserLogin() || !UserData::HasUser())
+				{
+					UserLogin::Enter(window);
+				}
+			}
 		}
 	}
 }

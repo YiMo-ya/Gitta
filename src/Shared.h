@@ -6,6 +6,7 @@ extern Vector2i WindowSize, ScreenSize;
 
 extern int FONTSIZE;
 
+//程序路径，不带/
 extern std::wstring ExePath;
 
 extern bool EnableDWM;

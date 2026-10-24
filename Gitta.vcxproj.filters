@@ -45,7 +45,7 @@
     <ClCompile Include="src\ui\WorkRect.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\user\User.cpp">
+    <ClCompile Include="src\user\Set.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\Shared.cpp">
@@ -54,12 +54,21 @@
     <ClCompile Include="src\ui\Search.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\user\Login.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lock\Lock.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\user\UserData.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shared.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\user\User.h">
+    <ClInclude Include="src\user\Set.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\ui\BottomBar.h">
@@ -96,6 +105,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\ui\Search.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\user\Login.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lock\Lock.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\user\UserData.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

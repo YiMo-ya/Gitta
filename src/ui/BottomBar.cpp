@@ -1,7 +1,7 @@
 #include "BottomBar.h"
 
 #include "Shared.h"
-#include "user/User.h"
+#include "user/Set.h"
 
 namespace BottomBar
 {

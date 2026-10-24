@@ -1,7 +1,7 @@
 #include "SideBar.h"
 #include "Shared.h"
 #include "main/Lang.h"
-#include "user/User.h"
+#include "user/Set.h"
 #include "info/Message.h"
 #include "main/Debug.h"
 
@@ -82,7 +82,7 @@ namespace SideBar
 			wstring Name, Key;
 			ParseText(ChineseIndex, Name, Key);
 
-			name = Translate::Translate(Name, UserData::Lang) + Key;
+			name = Translate::Translate(Name, Setting::Lang) + Key;
 
 			Font font;
 			wstring FontPath = ExePath + L"\\Font\\zh.dll";
@@ -97,7 +97,7 @@ namespace SideBar
 				XImage::NewImage(img, ExePath + L"\\Image\\ErrorIcon.dll");
 			}
 
-			img.color = UserData::BackColor == Color(30, 30, 30) ? Color::White : Color::Black;
+			img.color = Setting::BackColor == Color(30, 30, 30) ? Color::White : Color::Black;
 		}
 	};
 	vector<SideBarIcon> SideBarLevel1Icons;
@@ -157,8 +157,8 @@ namespace SideBar
 				if (!file)
 				{
 					Message::ShowMessage(
-						Translate::Translate(L"加载Visux配置失败，重新安装或许能够解决问题。", UserData::Lang),
-						Translate::Translate(L"加载配置失败", UserData::Lang),
+						Translate::Translate(L"加载Visux配置失败，重新安装或许能够解决问题。", Setting::Lang),
+						Translate::Translate(L"加载配置失败", Setting::Lang),
 						ICOTYPE_ERROR,
 						{ L"确定" },
 						3,
@@ -237,7 +237,7 @@ namespace SideBar
 						//当前页背景
 						if (i == SideBarIndex)
 						{
-							static Color BackFillColor = UserData::BackColor == Color(30, 30, 30) ? Color(80, 80, 80) : Color(200, 200, 200);
+							static Color BackFillColor = Setting::BackColor == Color(30, 30, 30) ? Color(80, 80, 80) : Color(200, 200, 200);
 							XGraph::SetFillColor(BackFillColor);
 							XGraph::RectangleShape::FillRoundRect_WithoutBorder(w * 0.1, Space * i + Space / 2 - w * 0.4, w * 0.8, w * 0.8, ROUNDSIZE, rt);
 						}
@@ -245,7 +245,7 @@ namespace SideBar
 						//预选页背景
 						if (i == SideBarInIndex)
 						{
-							static Color BackFillColor = UserData::BackColor == Color(30, 30, 30) ? Color(60, 60, 60) : Color(230, 230, 230);
+							static Color BackFillColor = Setting::BackColor == Color(30, 30, 30) ? Color(60, 60, 60) : Color(230, 230, 230);
 							XGraph::SetFillColor(BackFillColor);
 							XGraph::RectangleShape::FillRoundRect_WithoutBorder(w * 0.1, Space * i + Space / 2 - w * 0.4, w * 0.8, w * 0.8, ROUNDSIZE, rt);
 						}
@@ -259,7 +259,7 @@ namespace SideBar
 					//线条
 					if (SideBarLineSize.value > 0)
 					{
-						XGraph::SetColor(UserData::MainColor);
+						XGraph::SetColor(Setting::MainColor);
 						static int lw = ScreenSize.x / 300;
 						XGraph::LineShape::SetLineWidth(lw);
 						XGraph::LineShape::Line(
@@ -377,7 +377,7 @@ namespace SideBar
 					RectScaleX, RectScaleY, window);
 
 				//绘制背景
-				static Color BackFillColor = UserData::BackColor == Color(30, 30, 30) ? Color(50, 50, 50) : Color(250, 250, 250);
+				static Color BackFillColor = Setting::BackColor == Color(30, 30, 30) ? Color(50, 50, 50) : Color(250, 250, 250);
 				BackFillColor.a = NameAlpha.value * 0.9;
 				XGraph::SetFillColor(BackFillColor);
 				XGraph::RectangleShape::FillRoundRect_WithoutBorder(

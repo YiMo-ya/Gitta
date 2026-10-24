@@ -1,6 +1,6 @@
 #include "Xs/Xs.h"
 #include "Shared.h"
-#include "user/User.h"
+#include "user/Set.h"
 #include "info/Message.h"
 
 #include "Debug.h"
@@ -39,10 +39,10 @@ void InitApp()
 	FONTSIZE = ScreenSize.x / 100;
 
 	//初始化用户数据
-	UserData::Read();
+	Setting::Read();
 
 	//自适应字体大小
-	if (UserData::Lang == EN) FONTSIZE *= 0.9;
+	if (Setting::Lang == EN) FONTSIZE *= 0.9;
 
 	if(EnableDWM)
 	{
@@ -51,7 +51,7 @@ void InitApp()
 	}
 
 	//初始化文字颜色
-	FONTCOLOR = UserData::BackColor == Color(30, 30, 30) ? Color::White : Color::Black;
+	FONTCOLOR = Setting::BackColor == Color(30, 30, 30) ? Color::White : Color::Black;
 
 	//圆角大小
 	ROUNDSIZE = ScreenSize.x / 200;
@@ -83,12 +83,12 @@ int main()
 	{
 		XWindow::DWM::SetWindowBackType(window, BACKTYPE_BLUR);
 		XWindow::DWM::ExtendIntoClientArea(window, -1, -1, -1, -1);
-		XWindow::DWM::SetWindowDarkMode(window, UserData::BackColor == Color(30, 30, 30) ? true : false);
-		XWindow::DWM::SetWindowBorderColor(window, UserData::MainColor);
+		XWindow::DWM::SetWindowDarkMode(window, Setting::BackColor == Color(30, 30, 30) ? true : false);
+		XWindow::DWM::SetWindowBorderColor(window, Setting::MainColor);
 	}
 	else
 	{
-		XWindow::SetBackGroundColor(UserData::BackColor);
+		XWindow::SetBackGroundColor(Setting::BackColor);
 	}
 
 	//初始化图标

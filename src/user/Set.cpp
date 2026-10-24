@@ -1,10 +1,10 @@
-#include "User.h"
+#include "Set.h"
 #include "Shared.h"
 #include "main/Lang.h"
 
 NOXS; NOSTD;
 
-namespace UserData
+namespace Setting
 {
 	//主题颜色
 	Color MainColor = Color(210,180,255);
@@ -17,7 +17,7 @@ namespace UserData
 	void Read()
 	{
 		//拼接用户数据文件位置
-		wstring UserDataPath = ExePath + L"\\User\\UserData.ini";
+		wstring UserDataPath = ExePath + L"\\Setting\\Setting.ini";
 
 		//读取用户数据
 		ifstream UserData(UserDataPath);
@@ -74,7 +74,7 @@ namespace UserData
 			UserData.close();
 
 			//创建目录
-			XFile::CreateDirectory(ExePath + L"\\User");
+			XFile::CreateDirectory(ExePath + L"\\Setting");
 
 			//初始化用户数据
 			Init();
@@ -84,12 +84,12 @@ namespace UserData
 	void Init()
 	{
 		//拼接用户数据文件位置
-		wstring UserDataPath = ExePath + L"\\User\\UserData.ini";
+		wstring UserDataPath = ExePath + L"\\Setting\\Setting.ini";
 
 		ofstream InitUserData(UserDataPath);
 		if (InitUserData.is_open())
 		{
-			InitUserData << "<Theme> Black" << endl;
+			InitUserData << "<Theme> Dark" << endl;
 			InitUserData << "<Lang> ZH" << endl;
 			InitUserData << "<DWM> Enable" << endl;
 		}

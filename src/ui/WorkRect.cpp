@@ -3,7 +3,7 @@
 #include "BottomBar.h"
 #include "Shared.h"
 #include "Search.h"
-#include "user/User.h"
+#include "user/Set.h"
 
 namespace WorkRect
 {
@@ -45,12 +45,12 @@ namespace WorkRect
 			{
 				rt.clear(Color::Transparent);
 
-				static Color BackColor = UserData::BackColor == Color(30, 30, 30) ? Color(20, 20, 20, 200) : Color(255, 255, 255, 200);
+				static Color BackColor = Setting::BackColor == Color(30, 30, 30) ? Color(20, 20, 20, 200) : Color(255, 255, 255, 200);
 				XGraph::SetFillColor(Color(BackColor));
 
 				static int lw = ScreenSize.x / 1920;
 				XGraph::LineShape::SetLineWidth(lw);
-				static Color LineColor = UserData::BackColor == Color(30, 30, 30) ? Color(100, 100, 255) : Color(200, 200, 255);
+				static Color LineColor = Setting::BackColor == Color(30, 30, 30) ? Color(100, 100, 255) : Color(200, 200, 255);
 				XGraph::SetColor(Color(120, 120, 120));
 
 				XGraph::RectangleShape::FillRoundRect(lw, lw, w - lw * 2, h - lw * 2, ROUNDSIZE, rt);

@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\info\Message.cpp" />
+    <ClCompile Include="src\lock\Lock.cpp" />
     <ClCompile Include="src\main\Debug.cpp" />
     <ClCompile Include="src\main\Lang.cpp" />
     <ClCompile Include="src\main\Main.cpp" />
@@ -155,11 +156,14 @@
     <ClCompile Include="src\ui\SideBar.cpp" />
     <ClCompile Include="src\ui\UI.cpp" />
     <ClCompile Include="src\ui\WorkRect.cpp" />
-    <ClCompile Include="src\user\User.cpp" />
+    <ClCompile Include="src\user\Login.cpp" />
+    <ClCompile Include="src\user\Set.cpp" />
+    <ClCompile Include="src\user\UserData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\info\Message.h" />
+    <ClInclude Include="src\lock\Lock.h" />
     <ClInclude Include="src\main\Debug.h" />
     <ClInclude Include="src\main\ErrorCode.h" />
     <ClInclude Include="src\main\Lang.h" />
@@ -171,7 +175,9 @@
     <ClInclude Include="src\ui\SideBar.h" />
     <ClInclude Include="src\ui\UI.h" />
     <ClInclude Include="src\ui\WorkRect.h" />
-    <ClInclude Include="src\user\User.h" />
+    <ClInclude Include="src\user\Login.h" />
+    <ClInclude Include="src\user\Set.h" />
+    <ClInclude Include="src\user\UserData.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Gitta.rc" />

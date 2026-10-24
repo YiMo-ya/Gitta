@@ -2,7 +2,7 @@
 #include "Xs/Xs.h"
 #include "main/Lang.h"
 
-namespace UserData
+namespace Setting
 {
 	//初始化用户数据
 	void Init();
