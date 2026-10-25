@@ -7,7 +7,7 @@ NOXS; NOSTD;
 namespace Setting
 {
 	//主题颜色
-	Color MainColor = Color(210,180,255);
+	Color MainColor = Color(255,150,180);
 
 	//背景颜色
 	Color BackColor;
@@ -40,7 +40,7 @@ namespace Setting
 					else
 					{
 						BackColor = Color(240, 240, 240);
-						MainColor = Color(180, 0, 255);
+						//MainColor = Color(180, 0, 255);
 					}
 				}
 				//语言

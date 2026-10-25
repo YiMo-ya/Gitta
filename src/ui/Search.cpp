@@ -13,6 +13,8 @@ namespace Search
 	void Draw(RenWin& window)
 	{
 		static string SearchText;
+		static IMAGE img;
+		static Color ImageColor = Setting::BackColor == Color(30, 30, 30) ? Color(255, 255, 255) : Color(0, 0, 0);
 
 		//位置
 		int x = SideBar::Level1::w;
@@ -29,6 +31,8 @@ namespace Search
 		if (!init)
 		{
 			SearchBoxH = ScreenSize.y  * 0.04;
+
+			XImage::NewImage(img, ExePath + L"\\Image\\Search\\Search.dll");
 
 			init = true;
 		}
@@ -50,6 +54,13 @@ namespace Search
 			XGraph::RectangleShape::RoundRect(x, y, w, SearchBoxH, ROUNDSIZE, window);
 		}
 
+		//绘制图片
+		static float Scale = SearchBoxH * 0.5 / 512.0;
+		if (ui.IsCin) img.color = ImageColor;
+		else img.color = Color(140, 140, 140);
+		XImage::PutScaleImage(img, x + w - SearchBoxH * 0.6, y + SearchBoxH / 2, Scale, Scale, window, 0.5, 0.5);
+
+		//绘制边框
 		static int SPEED = 50;
 		if (XMsg::MouseMsg::IsMouseIn(x, y, w, SearchBoxH) || ui.IsCin)
 		{

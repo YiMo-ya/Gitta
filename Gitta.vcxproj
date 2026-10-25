@@ -157,6 +157,7 @@
     <ClCompile Include="src\ui\UI.cpp" />
     <ClCompile Include="src\ui\WorkRect.cpp" />
     <ClCompile Include="src\user\Login.cpp" />
+    <ClCompile Include="src\user\Repository.cpp" />
     <ClCompile Include="src\user\Set.cpp" />
     <ClCompile Include="src\user\UserData.cpp" />
   </ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="src\ui\UI.h" />
     <ClInclude Include="src\ui\WorkRect.h" />
     <ClInclude Include="src\user\Login.h" />
+    <ClInclude Include="src\user\Repository.h" />
     <ClInclude Include="src\user\Set.h" />
     <ClInclude Include="src\user\UserData.h" />
   </ItemGroup>

@@ -46,6 +46,9 @@ namespace MainWindow
 
 		int TaskBarHeight = XSystem::Info::GetTaskbarSize().y;
 
+		//自动登录
+		UserData::AutoLogin();
+
 		while (XMsg::IsOpen(window))
 		{
 			XWindow::DelayFps(window);
