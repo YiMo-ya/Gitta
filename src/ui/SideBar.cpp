@@ -195,7 +195,7 @@ namespace SideBar
 					}
 				}
 
-				SIDEBAR_LINE_SIZE = ScreenSize.x / 100;
+				SIDEBAR_LINE_SIZE = ScreenSize.x / 130;
 
 				w = ScreenSize.x / 30;
 
@@ -223,7 +223,8 @@ namespace SideBar
 				NeedRedraw = false;
 				if (rt.resize({ unsigned int(w),unsigned int(h) }))
 				{
-					rt.clear(Color::Transparent);
+					static Color ClearColor = Setting::BackColor == Color(30, 30, 30) ? Color(0, 0, 0, 0) : Color(255, 255, 255, 0);
+					rt.clear(ClearColor);
 
 					//图标
 					for (int i = 0; i < Size; i++)
@@ -235,9 +236,9 @@ namespace SideBar
 						else Icon.img.color.a = 200;
 
 						//当前页背景
-						if (i == SideBarIndex)
+						if (i == SideBarIndex && i != SideBarInIndex)
 						{
-							static Color BackFillColor = Setting::BackColor == Color(30, 30, 30) ? Color(80, 80, 80) : Color(200, 200, 200);
+							static Color BackFillColor = Setting::BackColor == Color(30, 30, 30) ? Color(30, 30, 30,220) : Color(240, 240, 240,220);
 							XGraph::SetFillColor(BackFillColor);
 							XGraph::RectangleShape::FillRoundRect_WithoutBorder(w * 0.1, Space * i + Space / 2 - w * 0.4, w * 0.8, w * 0.8, ROUNDSIZE, rt);
 						}
@@ -245,7 +246,7 @@ namespace SideBar
 						//预选页背景
 						if (i == SideBarInIndex)
 						{
-							static Color BackFillColor = Setting::BackColor == Color(30, 30, 30) ? Color(60, 60, 60) : Color(230, 230, 230);
+							static Color BackFillColor = Setting::BackColor == Color(30, 30, 30) ? Color(40, 40, 40,220) : Color(255, 255, 255,220);
 							XGraph::SetFillColor(BackFillColor);
 							XGraph::RectangleShape::FillRoundRect_WithoutBorder(w * 0.1, Space * i + Space / 2 - w * 0.4, w * 0.8, w * 0.8, ROUNDSIZE, rt);
 						}

@@ -24,6 +24,8 @@ namespace Search
 		static UI::InPutRectUI ui;
 		ui.x = x, ui.y = y, ui.w = w, ui.h = SearchBoxH;
 		ui.fx = x + UISPACE, ui.fy = y + SearchBoxH / 2;
+		ui.TextColor = Setting::BackColor == Color(30, 30, 30) ? Color::White : Color::Black;
+		ui.CurColor = ui.TextColor;
 		ui.tips = "> 键入以搜索";
 		ui.prefix = "> ";
 

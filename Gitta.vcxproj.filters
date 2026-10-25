@@ -66,6 +66,9 @@
     <ClCompile Include="src\user\Repository.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\user\RequirePassWord.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shared.h">
@@ -120,6 +123,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\user\Repository.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\user\RequirePassWord.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

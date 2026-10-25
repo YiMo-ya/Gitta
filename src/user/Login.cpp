@@ -524,7 +524,7 @@ namespace UserLogin
 			LoginBefore::DrawTitle(window, Clock);
 			LoginBefore::DrawInputBoxes(window, Clock);
 			LoginBefore::DrawHelpLink(window);
-			if (LoginBefore::DrawLoginButton(window, Clock))
+			if (LoginBefore::DrawLoginButton(window, Clock) || XMsg::KeyMsg::IsKeyDown(VK::Enter))
 			{
 				//登录
 				if (!UserName.empty() && !Password.empty())
@@ -580,8 +580,7 @@ namespace UserLogin
 			if (Clock < 120) Clock += 1;
 			else
 			{
-				if (ExitBackAlpha + 15 < 255) ExitBackAlpha += 15;
-				else break;
+				break;
 			}
 
 			//背景图片

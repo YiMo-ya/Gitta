@@ -4,6 +4,7 @@
 #include "user/Set.h"
 #include "user/UserData.h"
 #include "user/Login.h"
+#include "user/RequirePassWord.h"
 
 #include "ui/SideBar.h"
 #include "ui/BottomBar.h"
@@ -28,7 +29,7 @@ namespace MainWindow
 
 		XImage::NewImage(image, WallPaperPath);
 		XImageEx::ImageChange::Scale(image, ScreenSize.x / float(image.w), ScreenSize.y / float(image.h));
-		XImageEx::ImageBlur::Box(image,5);
+		XImageEx::ImageBlur::Box(image,15);
 		image.color.a = Setting::BackColor == Color(30,30,30) ? 100 : 200;
 	}
 
@@ -47,7 +48,13 @@ namespace MainWindow
 		int TaskBarHeight = XSystem::Info::GetTaskbarSize().y;
 
 		//自动登录
-		UserData::AutoLogin();
+		if (!UserData::AutoLogin())
+		{
+			if (XFile::Exists(L"User"))
+			{
+				XFile::Remove(L"User");
+			}
+		}
 
 		while (XMsg::IsOpen(window))
 		{
@@ -121,6 +128,9 @@ namespace MainWindow
 					UserLogin::Enter(window);
 				}
 			}
+
+			//当有密码需求时进入
+			RequirePassWord::Enter(window);
 		}
 	}
 }
